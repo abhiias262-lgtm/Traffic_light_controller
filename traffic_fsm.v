@@ -8,7 +8,7 @@ module traffic_light (
             GREEN = 3'b001;
             
 
-    reg [1:0] state ,next_state;
+    reg [2:0] state ,next_state;
     reg[3:0] timer;
 
     always @(posedge clk or posedge rst) begin
@@ -54,7 +54,7 @@ module tb_traffic_light;
 
     initial begin
         clk = 0; rst = 1;
-        #5 rst =0;
+        #10 rst = 0; // De-assert reset at clock falling edge to avoid race condition
         #200 ;
         $finish;
     end
